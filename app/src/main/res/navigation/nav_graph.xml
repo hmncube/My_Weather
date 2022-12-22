@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/nav_graph"
+    app:startDestination="@id/home">
+
+    <fragment
+        android:id="@+id/home"
+        android:name="com.hmncube.myweather.ui.current_weather.CurrentWeatherFragment"
+        android:label="Current Weather"
+        tools:layout="@layout/fragment_current_weather" >
+        <action
+            android:id="@+id/action_currentWeatherFragment_to_forecastWeatherFragment"
+            app:destination="@id/forecast" />
+        <action
+            android:id="@+id/action_currentWeatherFragment_to_searchWeatherFragment"
+            app:destination="@id/weather_map" />
+        <action
+            android:id="@+id/action_home_to_settings"
+            app:destination="@id/settings" />
+    </fragment>
+    <fragment
+        android:id="@+id/forecast"
+        android:name="com.hmncube.myweather.ui.forecast_weather.ForecastWeatherFragment"
+        android:label="Forecast"
+        tools:layout="@layout/fragment_forecast_weather" />
+    <fragment
+        android:id="@+id/weather_map"
+        android:name="com.hmncube.myweather.ui.search.WeatherMapFragment"
+        android:label="Weather Map"
+        tools:layout="@layout/fragment_weather_map" />
+    <fragment
+        android:id="@+id/settings"
+        android:name="com.hmncube.myweather.ui.settings.SettingsFragment"
+        android:label="SettingsFragment" />
+</navigation>

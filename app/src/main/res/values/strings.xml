@@ -1,0 +1,45 @@
+<resources>
+    <string name="app_name">My Weather</string>
+    <string name="placeholder_city">New York</string>
+    <string name="placeholder_temp">25</string>
+    <string name="placeholder_desc">Thunderstorm</string>
+    <string name="placeholder_date">Friday, 2 November</string>
+    <string name="time_placeholder">08:00 AM</string>
+    <string name="seven_days">7 Days forecast</string>
+    <string name="today">Today</string>
+    <string name="humidity">Humidity</string>
+    <string name="wind">Wind</string>
+    <string name="rain">Rain</string>
+
+    <string name="menu_search">Search</string>
+    <string name="menu_home">Home</string>
+    <string name="menu_settings">Settings</string>
+
+    <string name="metric_temperature_units">%1$s°C</string>
+    <string name="metric_wind_speed_units">%1$s m/s</string>
+    <string name="humidity_units">%1$s\%%</string>
+    <string name="pressure_units">%1$s hPa</string>
+
+    <!-- Preference Titles -->
+    <string name="messages_header">Messages</string>
+    <string name="sync_header">Sync</string>
+
+    <!-- Messages Preferences -->
+    <string name="signature_title">Your signature</string>
+    <string name="reply_title">Default reply action</string>
+
+    <!-- Sync Preferences -->
+    <string name="sync_title">Sync email periodically</string>
+    <string name="attachment_title">Download incoming attachments</string>
+    <string name="attachment_summary_on">Automatically download attachments for incoming emails
+    </string>
+    <string name="attachment_summary_off">Only download attachments when manually requested</string>
+    <string name="pressure">Pressure</string>
+    <string name="search">Search</string>
+    <string name="click_to_search">Click to Search</string>
+    <string name="menu_map">Map</string>
+    <string name="placeholder_wind_speed">8Km/hr</string>
+    <string name="placeholder_humidity">14%%</string>
+    <string name="placeholder_visibility">1Km</string>
+    <string name="visibility">Visibility</string>
+</resources>
