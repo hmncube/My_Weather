@@ -1,8 +1,5 @@
 package com.hmncube.myweather.ui.current_weather
 
-import android.graphics.drawable.Drawable
-import android.util.Log
-import androidx.core.content.ContextCompat
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
@@ -13,12 +10,9 @@ import com.hmncube.myweather.data.WeatherRepository
 import com.hmncube.myweather.data.database.WeatherData
 import com.hmncube.myweather.data.remote.models.Geocode
 import dagger.hilt.android.lifecycle.HiltViewModel
-import kotlinx.coroutines.delay
 import kotlinx.coroutines.launch
-import java.util.Calendar
-import java.util.Date
+import java.util.*
 import javax.inject.Inject
-import kotlin.math.log
 import kotlin.math.roundToInt
 
 @HiltViewModel
@@ -36,7 +30,6 @@ class CurrentWeatherViewModel @Inject constructor(private val repository: Weathe
     val snackBar : LiveData<String?>
         get() = _snackBar
 
-    //val weatherData = repository.weatherData
     private val _weatherData = MutableLiveData<WeatherData>()
     val weatherData : LiveData<WeatherData>
         get() = _weatherData
@@ -64,11 +57,9 @@ class CurrentWeatherViewModel @Inject constructor(private val repository: Weathe
                 repository.refreshData(latitude!!, longitude!!)
                 _weatherData.value = repository.getWeatherFromLocalSource(
                     latitude!!, longitude!!)
-                Log.d("CWViewM", "refresh: ${weatherData.value}")
                 _chartData.value = generateChartData(weatherData.value!!)
                 _forecastData.value = generateForecastData(weatherData.value!!)
             } catch (error : WeatherRefreshError) {
-                Log.d("CWViewM", "error ${error.message}")
                 _snackBar.value = error.message
             } finally {
                 _finishedLoading.value = true
@@ -102,7 +93,7 @@ class CurrentWeatherViewModel @Inject constructor(private val repository: Weathe
         return forecasts
     }
 
-    //todo rework
+    //todo rework and use from ImageUtile and Animation
     private fun getIconFromWeatherCode(weatherCode: String) : Int {
         return when (weatherCode) {
             "01d" -> R.drawable.day_clear
@@ -147,7 +138,6 @@ class CurrentWeatherViewModel @Inject constructor(private val repository: Weathe
     }
 
     fun setCoordinates(lat : Double, long : Double) {
-        Log.d("pundez", "setCoordinates: setCood")
         latitude = lat
         longitude = long
     }
@@ -169,7 +159,6 @@ class CurrentWeatherViewModel @Inject constructor(private val repository: Weathe
                 val results = repository.searchPlace(place)
                 geoCodeResults.value = results
             } catch (ex : WeatherRefreshError) {
-                Log.d("pundez", "getCoodForPlace: ${ex.message}")
                 _snackBar.value = ex.message
             } finally {
                 _searchLoading.value = false

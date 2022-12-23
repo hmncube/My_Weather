@@ -1,10 +1,8 @@
 package com.hmncube.myweather.ui.dialogs.search
 
-import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.ImageView
 import android.widget.TextView
 import androidx.cardview.widget.CardView
 import androidx.recyclerview.widget.RecyclerView
@@ -39,7 +37,6 @@ class SearchAdapter @Inject constructor(private val listener: AdapterClickListen
     }
 
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
-        Log.d("pundez", "onBindViewHolder: $position")
         holder.place.text = dataSet[position].name
         holder.state.text = dataSet[position].state
         holder.country.text = dataSet[position].country
@@ -53,7 +50,6 @@ class SearchAdapter @Inject constructor(private val listener: AdapterClickListen
     }
 
     fun setData(data : MutableList<Geocode>) {
-        Log.d("pundez", "setData: ${data.size}")
         dataSet = data
         notifyDataSetChanged()
     }

@@ -1,19 +1,14 @@
 package com.hmncube.myweather.ui.forecast_weather
 
 import android.text.format.DateFormat
-import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.ImageView
 import android.widget.TextView
-import androidx.cardview.widget.CardView
-import androidx.core.content.ContextCompat
 import androidx.recyclerview.widget.RecyclerView
 import com.airbnb.lottie.LottieAnimationView
 import com.google.android.material.card.MaterialCardView
 import com.hmncube.myweather.R
-import com.hmncube.myweather.data.remote.models.Geocode
 import javax.inject.Inject
 
 class ForecastAdapter @Inject constructor(private val listener: ForecastClickListener) :

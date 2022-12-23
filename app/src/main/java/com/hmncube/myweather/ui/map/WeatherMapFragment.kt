@@ -1,4 +1,4 @@
-package com.hmncube.myweather.ui.search
+package com.hmncube.myweather.ui.map
 
 import android.graphics.Color
 import android.os.Bundle

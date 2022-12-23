@@ -1,7 +1,5 @@
 package com.hmncube.myweather.ui.utils
 
-import android.graphics.drawable.Drawable
-import androidx.core.content.ContextCompat
 import com.hmncube.myweather.R
 
 class ImagesUtils {

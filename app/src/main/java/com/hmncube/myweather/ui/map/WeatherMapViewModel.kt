@@ -1,4 +1,4 @@
-package com.hmncube.myweather.ui.search
+package com.hmncube.myweather.ui.map
 
 import androidx.lifecycle.ViewModel
 

@@ -1,11 +1,9 @@
 package com.hmncube.myweather.ui.dialogs.search
 
 import android.content.Context
-import android.hardware.input.InputManager
 import android.os.Bundle
 import android.text.Editable
 import android.text.TextWatcher
-import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -13,11 +11,9 @@ import android.view.inputmethod.InputMethodManager
 import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.google.android.material.bottomsheet.BottomSheetDialogFragment
-import com.google.android.material.snackbar.Snackbar
 import com.hmncube.myweather.R
 import com.hmncube.myweather.data.remote.models.Geocode
 import com.hmncube.myweather.databinding.FragmenSearchDialogBinding
-import com.hmncube.myweather.ui.current_weather.CurrentWeatherFragment
 import com.hmncube.myweather.ui.current_weather.CurrentWeatherViewModel
 import com.hmncube.myweather.ui.current_weather.SearchListener
 import dagger.hilt.android.AndroidEntryPoint

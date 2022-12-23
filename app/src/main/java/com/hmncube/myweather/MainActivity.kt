@@ -1,6 +1,5 @@
 package com.hmncube.myweather
 
-import android.content.res.ColorStateList
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import androidx.navigation.NavController

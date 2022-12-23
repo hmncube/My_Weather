@@ -2,10 +2,8 @@ package com.hmncube.myweather.ui.current_weather
 
 import android.Manifest
 import android.annotation.SuppressLint
-import android.graphics.Color
 import android.graphics.drawable.Drawable
 import android.os.Bundle
-import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -120,7 +118,6 @@ class CurrentWeatherFragment : Fragment(), SearchListener {
         }
 
         viewModel.weatherData.observe(requireActivity()) { weatherData ->
-            Log.d("CurrentFrag", "onActivityCreated: $weatherData")
             if (weatherData == null || weatherData.forecasts.isEmpty()) {
                 viewModel.getFreshWeatherData()
             } else {
@@ -136,7 +133,6 @@ class CurrentWeatherFragment : Fragment(), SearchListener {
         binding.forecastRv.adapter = adapter
         
         viewModel.forecastData.observe(requireActivity()) { data ->
-            Log.d(TAG, "onActivityCreated: ${data.size}")
             adapter.setData(data.toMutableList())
         }
 
@@ -152,7 +148,6 @@ class CurrentWeatherFragment : Fragment(), SearchListener {
                 binding.cardContainer.visibility = View.VISIBLE
                 binding.refreshLayout.isRefreshing = false
             } else if (!loading && binding.currentCardAnimationView.visibility == View.GONE) {
-                Log.d(TAG, "onActivityCreated: pundez ")
                 binding.currentCardAnimationView.visibility = View.VISIBLE
                 binding.forecastAnimationView.visibility = View.VISIBLE
                 binding.chartAnimationView.visibility = View.VISIBLE
@@ -166,7 +161,6 @@ class CurrentWeatherFragment : Fragment(), SearchListener {
         }
         
         viewModel.snackBar.observe(requireActivity()){
-            Log.d(TAG, "onActivityCreated: pundez Error $it")
             it?.let { it1 -> Snackbar.make(binding.root, it1, Snackbar.LENGTH_SHORT).show() }
         }
 
@@ -245,7 +239,6 @@ class CurrentWeatherFragment : Fragment(), SearchListener {
             ContextCompat.getColor(requireContext(), R.color.on_primary)
 
         binding.chart.setNoDataText("")
-        //binding.chart .textColor = resources.getColor(R.color.on_secondary)
         binding.chart.axisRight.isEnabled = false
         binding.chart.axisLeft.isEnabled = false
         binding.chart.setPinchZoom(true)
@@ -262,9 +255,9 @@ class CurrentWeatherFragment : Fragment(), SearchListener {
         binding.cardCityName.text = weatherData.city.name?.uppercase()
         binding.temp.text = String.format(resources.getString(R.string.metric_temperature_units),
             weatherData.forecasts[0].main?.temp?.roundToInt())
-        //"${weatherData.forecasts[0].main?.temp?.roundToInt()}°C"
         binding.weatherDescription.text = weatherData.forecasts[0].weather[0].description?.uppercase()
         binding.date.text = weatherData.forecasts[0].dtTxt.toString()
+        //todo add animation
         binding.weatherIcon.setImageDrawable(getIconFromWeatherCode(weatherData.forecasts[0].weather[0].icon!!))
 
         binding.windValue.text = String.format(

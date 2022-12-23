@@ -27,7 +27,7 @@
         tools:layout="@layout/fragment_forecast_weather" />
     <fragment
         android:id="@+id/weather_map"
-        android:name="com.hmncube.myweather.ui.search.WeatherMapFragment"
+        android:name="com.hmncube.myweather.ui.map.WeatherMapFragment"
         android:label="Weather Map"
         tools:layout="@layout/fragment_weather_map" />
     <fragment
