@@ -6,7 +6,7 @@ import com.hmncube.myweather.R
 
 class ImagesUtils {
     companion object {
-        private fun getAnimationFromWeatherCode(weatherCode: String) : Int {
+        fun getAnimationFromWeatherCode(weatherCode: String) : Int {
             return when (weatherCode) {
                 "01d" -> R.raw.sun
                 "02d" -> R.raw.day_partial_cloud

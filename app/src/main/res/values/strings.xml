@@ -5,7 +5,7 @@
     <string name="placeholder_desc">Thunderstorm</string>
     <string name="placeholder_date">Friday, 2 November</string>
     <string name="time_placeholder">08:00 AM</string>
-    <string name="seven_days">7 Days forecast</string>
+    <string name="days_forecast">Days forecast</string>
     <string name="today">Today</string>
     <string name="humidity">Humidity</string>
     <string name="wind">Wind</string>
@@ -16,9 +16,10 @@
     <string name="menu_settings">Settings</string>
 
     <string name="metric_temperature_units">%1$s°C</string>
-    <string name="metric_wind_speed_units">%1$s m/s</string>
+    <string name="metric_wind_speed_units">%1$s km/hr</string>
     <string name="humidity_units">%1$s\%%</string>
     <string name="pressure_units">%1$s hPa</string>
+    <string name="visibility_units">%1$s km</string>
 
     <!-- Preference Titles -->
     <string name="messages_header">Messages</string>

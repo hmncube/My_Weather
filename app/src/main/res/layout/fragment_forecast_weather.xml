@@ -20,12 +20,12 @@
             android:layout_width="match_parent"
             android:layout_height="match_parent">
             <com.airbnb.lottie.LottieAnimationView
-                android:id="@+id/forecastCardAnimationView"
+                android:id="@+id/forecastLoadingAnimationView"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                app:lottie_rawRes="@raw/weathericon"
                 app:lottie_autoPlay="true"
                 app:lottie_loop="true"
+                android:visibility="gone"
                 tools:visibility="gone"/>
             <TextView
                 android:id="@+id/temp"
@@ -33,7 +33,7 @@
                 android:layout_height="wrap_content"
                 android:layout_margin="@dimen/margin_8"
                 android:text="@string/placeholder_temp"
-                android:textSize="@dimen/text_size_56"
+                android:textSize="32sp"
                 style="@style/TextBold"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent"/>
@@ -42,39 +42,40 @@
                 android:id="@+id/description"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="@dimen/margin_24"
                 android:layout_marginStart="@dimen/margin_16"
+                android:layout_marginTop="@dimen/margin_8"
                 android:text="@string/placeholder_desc"
                 android:textSize="@dimen/text_size_13"
                 android:gravity="top"
                 style="@style/TextBold"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintTop_toTopOf="parent"/>
+                app:layout_constraintTop_toTopOf="@+id/temp"/>
 
             <TextView
                 android:id="@+id/date"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="@dimen/margin_16"
                 android:text="@string/placeholder_date"
-                android:textSize="@dimen/text_size_8"
+                android:textSize="@dimen/text_size_13"
                 android:gravity="top"
                 style="@style/TextBold"
                 app:layout_constraintStart_toStartOf="@+id/description"
                 app:layout_constraintEnd_toEndOf="@+id/description"
-                app:layout_constraintTop_toTopOf="@+id/description"/>
+                app:layout_constraintTop_toBottomOf="@+id/description"/>
 
-            <ImageView
+            <com.airbnb.lottie.LottieAnimationView
                 android:id="@+id/mainIcon"
                 android:layout_width="0dp"
-                android:layout_height="0dp"
+                android:layout_height="150dp"
                 android:layout_margin="@dimen/margin_8"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintEnd_toStartOf="@+id/strip"
-                app:layout_constraintTop_toBottomOf="@+id/temp"
                 app:layout_constraintBottom_toBottomOf="parent"
-                android:src="@drawable/cloudy"/>
+                app:layout_constraintEnd_toStartOf="@+id/strip"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/temp"
+                app:lottie_autoPlay="true"
+                app:lottie_loop="true" />
+
             <androidx.constraintlayout.widget.ConstraintLayout
                 android:id="@+id/strip"
                 android:layout_width="wrap_content"
@@ -87,7 +88,7 @@
                     android:id="@+id/stripWindIcon"
                     android:layout_width="40dp"
                     android:layout_height="40dp"
-                    android:src="@drawable/cloudy"
+                    android:src="@drawable/wind"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toTopOf="parent" />
@@ -99,32 +100,20 @@
                     android:layout_height="wrap_content"
                     android:gravity="top"
                     android:text="@string/placeholder_wind_speed"
-                    android:textSize="@dimen/text_size_16"
+                    android:textSize="@dimen/text_size_13"
                     app:layout_constraintEnd_toEndOf="@+id/stripWindIcon"
                     app:layout_constraintStart_toStartOf="@+id/stripWindIcon"
                     app:layout_constraintTop_toBottomOf="@+id/stripWindIcon" />
-
-                <TextView
-                    android:id="@+id/WindName"
-                    style="@style/Text"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:gravity="top"
-                    android:text="@string/wind"
-                    android:textSize="@dimen/text_size_16"
-                    app:layout_constraintEnd_toEndOf="@+id/stripWindIcon"
-                    app:layout_constraintStart_toStartOf="@+id/stripWindIcon"
-                    app:layout_constraintTop_toBottomOf="@+id/windValue" />
 
                 <ImageView
                     android:id="@+id/stripHumidityIcon"
                     android:layout_width="40dp"
                     android:layout_height="40dp"
                     android:layout_marginTop="@dimen/margin_8"
-                    android:src="@drawable/cloudy"
+                    android:src="@drawable/humidity"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toBottomOf="@+id/WindName" />
+                    app:layout_constraintTop_toBottomOf="@+id/windValue" />
 
                 <TextView
                     android:id="@+id/humidityValue"
@@ -133,33 +122,20 @@
                     android:layout_height="wrap_content"
                     android:gravity="top"
                     android:text="@string/placeholder_humidity"
-                    android:textSize="@dimen/text_size_16"
+                    android:textSize="@dimen/text_size_13"
                     app:layout_constraintEnd_toEndOf="@+id/stripHumidityIcon"
                     app:layout_constraintStart_toStartOf="@+id/stripHumidityIcon"
                     app:layout_constraintTop_toBottomOf="@+id/stripHumidityIcon" />
-
-                <TextView
-                    android:id="@+id/humidityName"
-                    style="@style/Text"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:gravity="top"
-                    android:text="@string/humidity"
-                    android:textSize="@dimen/text_size_16"
-                    app:layout_constraintEnd_toEndOf="@+id/stripHumidityIcon"
-                    app:layout_constraintStart_toStartOf="@+id/stripHumidityIcon"
-                    app:layout_constraintTop_toBottomOf="@+id/humidityValue" />
-
 
                 <ImageView
                     android:id="@+id/stripVisibilityIcon"
                     android:layout_width="40dp"
                     android:layout_height="40dp"
                     android:layout_marginTop="@dimen/margin_8"
-                    android:src="@drawable/cloudy"
+                    android:src="@drawable/visibility"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toBottomOf="@+id/humidityName" />
+                    app:layout_constraintTop_toBottomOf="@+id/humidityValue" />
 
                 <TextView
                     android:id="@+id/visibilityValue"
@@ -168,24 +144,11 @@
                     android:layout_height="wrap_content"
                     android:gravity="top"
                     android:text="@string/placeholder_visibility"
-                    android:textSize="@dimen/text_size_16"
+                    android:textSize="@dimen/text_size_13"
                     app:layout_constraintEnd_toEndOf="@+id/stripVisibilityIcon"
                     app:layout_constraintStart_toStartOf="@+id/stripVisibilityIcon"
                     app:layout_constraintTop_toBottomOf="@+id/stripVisibilityIcon" />
 
-                <TextView
-                    android:id="@+id/visibilityName"
-                    style="@style/Text"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginBottom="@dimen/margin_8"
-                    android:gravity="top"
-                    android:text="@string/visibility"
-                    android:textSize="@dimen/text_size_16"
-                    app:layout_constraintBottom_toBottomOf="parent"
-                    app:layout_constraintEnd_toEndOf="@+id/stripVisibilityIcon"
-                    app:layout_constraintStart_toStartOf="@+id/stripVisibilityIcon"
-                    app:layout_constraintTop_toBottomOf="@+id/visibilityValue" />
             </androidx.constraintlayout.widget.ConstraintLayout>
         </androidx.constraintlayout.widget.ConstraintLayout>
 
@@ -194,7 +157,7 @@
         android:id="@+id/forecastTitle"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:text="@string/seven_days"
+        android:text="@string/days_forecast"
         android:textSize="@dimen/text_size_22"
         android:textAlignment="center"
         android:layout_margin="@dimen/margin_8"

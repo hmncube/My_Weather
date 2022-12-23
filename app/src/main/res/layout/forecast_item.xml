@@ -3,6 +3,7 @@
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/forecastLayout"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:backgroundTint="@color/primary"
@@ -18,28 +19,29 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             style="@style/TextBold"
-            android:layout_marginStart="@dimen/margin_16"
+            android:layout_marginStart="@dimen/margin_4"
             android:textSize="@dimen/text_size_15"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="@+id/forecastIcon"
             app:layout_constraintBottom_toBottomOf="@+id/forecastIcon"
             tools:text="Mon"/>
 
-        <ImageView
+        <com.airbnb.lottie.LottieAnimationView
             android:id="@+id/forecastIcon"
             android:layout_width="60dp"
             android:layout_height="60dp"
-            android:layout_marginStart="@dimen/margin_40"
-            android:src="@drawable/cloudy"
+            android:layout_marginStart="@dimen/margin_8"
             app:layout_constraintStart_toEndOf="@+id/forecastDay"
-            app:layout_constraintTop_toTopOf="parent" />
+            app:layout_constraintTop_toTopOf="parent"
+            app:lottie_autoPlay="true"
+            app:lottie_loop="true" />
 
         <TextView
             android:id="@+id/forecastDesc"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:textSize="@dimen/text_size_15"
-            android:layout_marginStart="@dimen/margin_40"
+            android:layout_marginStart="@dimen/margin_16"
             style="@style/TextBold"
             app:layout_constraintStart_toEndOf="@+id/forecastIcon"
             app:layout_constraintTop_toTopOf="@+id/forecastIcon"
