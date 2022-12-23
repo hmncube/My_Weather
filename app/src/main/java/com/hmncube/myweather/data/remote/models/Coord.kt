@@ -2,10 +2,10 @@ package com.hmncube.myweather.data.remote.models
 
 import com.google.gson.annotations.SerializedName
 
-
 data class Coord (
-
-  @SerializedName("lat" ) var lat : Double? = null,
-  @SerializedName("lon" ) var lon : Double? = null
+  @SerializedName("lat" )
+  var lat : Double? = null,
+  @SerializedName("lon" )
+  var lon : Double? = null
 
 )

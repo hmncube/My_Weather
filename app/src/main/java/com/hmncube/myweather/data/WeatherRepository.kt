@@ -1,19 +1,16 @@
 package com.hmncube.myweather.data
 
-import android.util.Log
 import com.google.gson.Gson
 import com.hmncube.myweather.BuildConfig
 import com.hmncube.myweather.data.database.AppDatabase
 import com.hmncube.myweather.data.database.WeatherData
 import com.hmncube.myweather.data.remote.OpenWeatherService
-import com.hmncube.myweather.data.remote.WeatherRemoteDataSource
 import com.hmncube.myweather.data.remote.models.Geocode
 import java.util.Calendar
 import java.util.Date
 import javax.inject.Inject
 
 class WeatherRepository @Inject constructor(
-    private val remoteDataSource: WeatherRemoteDataSource,
     private val database: AppDatabase,
     private val api : OpenWeatherService,
 ) {
@@ -22,7 +19,6 @@ class WeatherRepository @Inject constructor(
     suspend fun refreshData(lat: Double, long: Double) {
         val key = generateKey(lat, long)
         val data = database.readData(key)
-        Log.d("WeatherRepo", "refreshData: $data")
         if (data.isNullOrBlank()) {
             //no data in db
             getWeatherFromRemoteSource(lat, long)
@@ -32,19 +28,14 @@ class WeatherRepository @Inject constructor(
             if (weatherData.forecasts.isEmpty()) {
                 getWeatherFromRemoteSource(lat, long)
                 return
-                //throw WeatherRefreshError("Could not get the weather", null)
             }
             val lastWeatherData = weatherData.forecasts[weatherData.forecasts.size - 1]
             val date = lastWeatherData.dt!!
-            val dateText = lastWeatherData.dtTxt!!
             val dateObj = Date(date.toLong() * 1000)
             val today = Calendar.getInstance().time
-            Log.d("ppppp", "refreshData: $dateObj")
-            Log.d("ppppp", "refreshData: $today")
 
             //todo rework develop algorithm to dertemine if date is tommorrow
             if (today.after(dateObj)) {
-                Log.d("WeatherRepo", "refreshData: old")
                 // weather is old
                 database.deleteData(key)
                 getWeatherFromRemoteSource(lat, long)
@@ -84,7 +75,6 @@ class WeatherRepository @Inject constructor(
 
 
     private fun saveDataToDb(result: WeatherData, key : String) {
-        Log.d("pundez", "saveDataToDb: SAVINF $result")
         database.saveData(result, key)
     }
 

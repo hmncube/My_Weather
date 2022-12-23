@@ -1,7 +1,6 @@
 package com.hmncube.myweather.data.remote
 
 import com.hmncube.myweather.data.remote.models.ApiWeatherData
-import com.hmncube.myweather.data.remote.models.GeoCodeResponse
 import com.hmncube.myweather.data.remote.models.Geocode
 import retrofit2.http.GET
 import retrofit2.http.Query

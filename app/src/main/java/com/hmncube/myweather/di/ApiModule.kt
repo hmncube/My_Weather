@@ -1,9 +1,6 @@
 package com.hmncube.myweather.di
 
-import com.hmncube.myweather.data.WeatherRepository
-import com.hmncube.myweather.data.remote.OpenMateoService
 import com.hmncube.myweather.data.remote.OpenWeatherService
-import com.hmncube.myweather.data.remote.WeatherRemoteDataSource
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn
@@ -12,7 +9,6 @@ import okhttp3.OkHttpClient
 import okhttp3.logging.HttpLoggingInterceptor
 import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
-import retrofit2.create
 import javax.inject.Singleton
 
 @Module
@@ -50,16 +46,6 @@ object ApiModule {
     fun provideOpenWeatherService(retrofit: Retrofit): OpenWeatherService =
         retrofit.create(OpenWeatherService::class.java)
 
-
-    @Singleton
-    @Provides
-    fun provideOpenMateoService(retrofit: Retrofit): OpenMateoService =
-        retrofit.create(OpenMateoService::class.java)
-
-
-    @Singleton
-    @Provides
-    fun provideWeatherRemotedDataSource(openMateoService: OpenMateoService) = WeatherRemoteDataSource(openMateoService)
 /*
     @Singleton
     @Provides
