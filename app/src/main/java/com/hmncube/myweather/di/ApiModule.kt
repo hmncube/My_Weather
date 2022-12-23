@@ -14,9 +14,7 @@ import javax.inject.Singleton
 @Module
 @InstallIn(SingletonComponent::class)
 object ApiModule {
-    //private const val BASE_URL = "https://api.open-meteo.com/v1/"
     private const val BASE_URL = "https://api.openweathermap.org/"
-    //private const val BASE_URL = "https://api.openweathermap.org/data/2.5/"
 
     @Singleton
     @Provides
@@ -45,16 +43,4 @@ object ApiModule {
     @Provides
     fun provideOpenWeatherService(retrofit: Retrofit): OpenWeatherService =
         retrofit.create(OpenWeatherService::class.java)
-
-/*
-    @Singleton
-    @Provides
-    fun providesWeatherRepository(openMateoService: OpenMateoService) = WeatherRepository()*/
 }
-
-
-
-
-
-
-
