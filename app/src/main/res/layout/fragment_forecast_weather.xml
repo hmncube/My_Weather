@@ -37,7 +37,16 @@
                 style="@style/TextBold"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent"/>
-
+            <TextView
+                android:id="@+id/minTemp"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_margin="@dimen/margin_8"
+                android:text="@string/placeholder_temp"
+                android:textSize="32sp"
+                style="@style/TextBold"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintBottom_toBottomOf="parent"/>
             <TextView
                 android:id="@+id/description"
                 android:layout_width="wrap_content"
@@ -71,7 +80,7 @@
                 android:layout_margin="@dimen/margin_8"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toStartOf="@+id/strip"
-                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintStart_toEndOf="@+id/minTemp"
                 app:layout_constraintTop_toBottomOf="@+id/temp"
                 app:lottie_autoPlay="true"
                 app:lottie_loop="true" />

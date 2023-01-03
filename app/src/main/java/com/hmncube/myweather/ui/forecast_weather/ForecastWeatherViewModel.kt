@@ -1,5 +1,6 @@
 package com.hmncube.myweather.ui.forecast_weather
 
+import android.util.Log
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
@@ -32,24 +33,27 @@ class ForecastWeatherViewModel @Inject constructor(private val repository: Weath
         _loading.value = false
     }
 
-    //todo rework
     private fun processData(weatherData: WeatherData): List<DailyForecastData> {
         val forecasts = mutableListOf<DailyForecastData>()
-        var lastDate = Calendar.getInstance().time
-        lastDate.hours = 0
-        lastDate.minutes = 0
-        lastDate.seconds = 0
+        var lastDate = Calendar.getInstance()
+        var max = Double.MIN_VALUE
+        var min = Double.MAX_VALUE
         for (forecast in weatherData.forecasts) {
-            val date = Date(forecast.dt?.toLong()!! * 1000)
-            if (date.date != lastDate.date) {
+            val date = Date(forecast.dt?.toLong()!! * 1000).toCalendar()
+            if (date.get(Calendar.DAY_OF_MONTH) == lastDate.get(Calendar.DAY_OF_MONTH)) {
+                val temp = forecast.main?.temp!!
+                if (temp > max) {
+                    max = temp
+                } else if (temp < min) {
+                    min = temp
+                }
+            } else {
                 lastDate = date
-                lastDate.hours = 0
-                lastDate.minutes = 0
-                lastDate.seconds = 0
                 forecasts.add(
                     DailyForecastData(
-                        forecast.main?.tempMax?.roundToInt()!!,
-                        date,
+                        max.roundToInt(),
+                        min.roundToInt(),
+                        date.time,
                         forecast.weather[0].description!!,
                         forecast.wind?.speed!!,
                         forecast.main?.humidity!!,
@@ -57,8 +61,18 @@ class ForecastWeatherViewModel @Inject constructor(private val repository: Weath
                         ImagesUtils.getAnimationFromWeatherCode(forecast.weather[0].icon!!)
                     )
                 )
+                max = Double.MIN_VALUE
+                min = Double.MAX_VALUE
             }
         }
+        Log.d("pundez", "processData: date = ${forecasts.size}")
+        //todo display all the returned results
         return forecasts
     }
+}
+//todo
+private fun Date.toCalendar(): Calendar {
+    val cal = Calendar.getInstance()
+    cal.time = this
+    return cal
 }

@@ -21,14 +21,15 @@ class ForecastAdapter @Inject constructor(private val listener: ForecastClickLis
         val day : TextView
         val icon : LottieAnimationView
         val desc : TextView
-        val temp : TextView
+        //val maxTemp : TextView
+        val maxTemp : TextView
 
         init {
             layout = view.findViewById(R.id.forecastLayout)
             day = view.findViewById(R.id.forecastDay)
             icon = view.findViewById(R.id.forecastIcon)
             desc = view.findViewById(R.id.forecastDesc)
-            temp = view.findViewById(R.id.forecastTemp)
+            maxTemp = view.findViewById(R.id.forecastMaxTemp)
         }
     }
 
@@ -43,9 +44,9 @@ class ForecastAdapter @Inject constructor(private val listener: ForecastClickLis
         holder.day.text = DateFormat.format("E", dataSet[position].date)
         holder.icon.setAnimation(dataSet[position].weatherIcon)
         holder.desc.text = dataSet[position].weatherDescription
-        holder.temp.text = String.format(
+        holder.maxTemp.text = String.format(
             holder.itemView.context.resources.getString(R.string.metric_temperature_units),
-            dataSet[position].temperature
+            dataSet[position].maxTemperature
         )
         holder.layout.setOnClickListener {
             listener.onClick(dataSet[position])

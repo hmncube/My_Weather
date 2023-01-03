@@ -3,6 +3,7 @@ package com.hmncube.myweather.ui.forecast_weather
 import androidx.lifecycle.ViewModelProvider
 import android.os.Bundle
 import android.text.format.DateFormat
+import android.util.Log
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
@@ -53,10 +54,17 @@ class ForecastWeatherFragment : Fragment(), ForecastClickListener {
     }
 
     private fun updateCard(forecast: DailyForecastData) {
+        Log.d("pundez", "updateCard: max = ${forecast.maxTemperature} min = ${forecast.minTemperature}")
         binding.temp.text = String.format(
             resources.getString(R.string.metric_temperature_units),
-            forecast.temperature
+            forecast.maxTemperature
         )
+
+        binding.minTemp.text = String.format(
+            resources.getString(R.string.metric_temperature_units),
+            forecast.minTemperature
+        )
+
         binding.mainIcon.setAnimation(forecast.weatherIcon)
         binding.description.text = forecast.weatherDescription
 

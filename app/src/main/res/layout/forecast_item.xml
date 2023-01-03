@@ -28,8 +28,8 @@
 
         <com.airbnb.lottie.LottieAnimationView
             android:id="@+id/forecastIcon"
-            android:layout_width="60dp"
-            android:layout_height="60dp"
+            android:layout_width="40dp"
+            android:layout_height="40dp"
             android:layout_marginStart="@dimen/margin_8"
             app:layout_constraintStart_toEndOf="@+id/forecastDay"
             app:layout_constraintTop_toTopOf="parent"
@@ -41,7 +41,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:textSize="@dimen/text_size_15"
-            android:layout_marginStart="@dimen/margin_16"
+            android:layout_marginStart="@dimen/margin_8"
             style="@style/TextBold"
             app:layout_constraintStart_toEndOf="@+id/forecastIcon"
             app:layout_constraintTop_toTopOf="@+id/forecastIcon"
@@ -49,15 +49,16 @@
             tools:text="@string/placeholder_desc"/>
 
         <TextView
-            android:id="@+id/forecastTemp"
+            android:id="@+id/forecastMaxTemp"
+            style="@style/TextBold"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:textSize="@dimen/text_size_15"
             android:layout_margin="@dimen/margin_16"
-            style="@style/TextBold"
-            app:layout_constraintStart_toEndOf="@+id/forecastDesc"
-            app:layout_constraintTop_toTopOf="@+id/forecastIcon"
+            android:textSize="@dimen/text_size_15"
             app:layout_constraintBottom_toBottomOf="@+id/forecastIcon"
-            tools:text="@string/placeholder_temp"/>
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="@+id/forecastIcon"
+            tools:text="@string/placeholder_temp" />
+
     </androidx.constraintlayout.widget.ConstraintLayout>
 </com.google.android.material.card.MaterialCardView>
