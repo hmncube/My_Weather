@@ -51,6 +51,7 @@ class ForecastWeatherViewModel @Inject constructor(private val repository: Weath
             } else {
                 lastDate = date
                 val weatherIcon = getWeatherIconFromWeatherDescriptions(weatherDescriptions)
+                weatherDescriptions = mutableListOf()
                 forecasts.add(
                     DailyForecastData(
                         max.roundToInt(),
