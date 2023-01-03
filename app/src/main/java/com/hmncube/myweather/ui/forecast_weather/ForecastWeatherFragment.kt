@@ -71,7 +71,7 @@ class ForecastWeatherFragment : Fragment(), ForecastClickListener {
         binding.date.text = DateFormat.format("E, d MMM", forecast.date)
         binding.windValue.text = String.format(
             resources.getString(R.string.metric_wind_speed_units),
-            forecast.windSpeed * 3.6
+            forecast.windSpeed
         )
         binding.humidityValue.text = String.format(
             resources.getString(R.string.humidity_units),

@@ -7,7 +7,7 @@ data class DailyForecastData(
     val minTemperature : Int,
     val date : Date,
     val weatherDescription : String,
-    val windSpeed : Double,
+    val windSpeed : String,
     val humidity : Int,
     val visibility : Int,
     val weatherIcon : Int,

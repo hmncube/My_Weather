@@ -1,6 +1,5 @@
 package com.hmncube.myweather.ui.forecast_weather
 
-import android.util.Log
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
@@ -9,6 +8,8 @@ import com.hmncube.myweather.data.database.WeatherData
 import com.hmncube.myweather.data.remote.models.WeatherValues
 import com.hmncube.myweather.ui.utils.ImagesUtils
 import dagger.hilt.android.lifecycle.HiltViewModel
+import java.math.RoundingMode
+import java.text.DecimalFormat
 import java.util.*
 import javax.inject.Inject
 import kotlin.math.roundToInt
@@ -101,8 +102,11 @@ class ForecastWeatherViewModel @Inject constructor(private val repository: Weath
         return list.sum() / list.size
     }
 
-    private fun calculateWindSpeedAverage(windSpeedList: MutableList<Double>): Double {
-        return windSpeedList.sum() / windSpeedList.size
+    private fun calculateWindSpeedAverage(windSpeedList: MutableList<Double>): String {
+        val averageSpeed = (windSpeedList.sum() / windSpeedList.size) * 3.6
+        val df = DecimalFormat("##.##")
+        df.roundingMode = RoundingMode.DOWN
+        return df.format(averageSpeed)
     }
 
     private fun removeCurrentDayWeather(forecasts: List<WeatherValues>): List<WeatherValues> {
