@@ -1,6 +1,5 @@
 package com.hmncube.myweather.ui.forecast_weather
 
-import android.util.Log
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
@@ -38,6 +37,7 @@ class ForecastWeatherViewModel @Inject constructor(private val repository: Weath
         var lastDate = Calendar.getInstance()
         var max = Double.MIN_VALUE
         var min = Double.MAX_VALUE
+        var weatherDescriptions = mutableListOf<String>()
         for (forecast in weatherData.forecasts) {
             val date = Date(forecast.dt?.toLong()!! * 1000).toCalendar()
             if (date.get(Calendar.DAY_OF_MONTH) == lastDate.get(Calendar.DAY_OF_MONTH)) {
@@ -47,8 +47,10 @@ class ForecastWeatherViewModel @Inject constructor(private val repository: Weath
                 } else if (temp < min) {
                     min = temp
                 }
+                weatherDescriptions.add(forecast.weather[0].icon!!)
             } else {
                 lastDate = date
+                val weatherIcon = getWeatherIconFromWeatherDescriptions(weatherDescriptions)
                 forecasts.add(
                     DailyForecastData(
                         max.roundToInt(),
@@ -58,16 +60,19 @@ class ForecastWeatherViewModel @Inject constructor(private val repository: Weath
                         forecast.wind?.speed!!,
                         forecast.main?.humidity!!,
                         forecast.visibility!! / 1000,
-                        ImagesUtils.getAnimationFromWeatherCode(forecast.weather[0].icon!!)
+                        ImagesUtils.getAnimationFromWeatherCode(weatherIcon)
                     )
                 )
                 max = Double.MIN_VALUE
                 min = Double.MAX_VALUE
             }
         }
-        Log.d("pundez", "processData: date = ${forecasts.size}")
-        //todo display all the returned results
         return forecasts
+    }
+
+    private fun getWeatherIconFromWeatherDescriptions(weatherDescriptions: MutableList<String>): String {
+        val descriptionCounts = weatherDescriptions.groupingBy { it }.eachCount()
+        return descriptionCounts.maxBy { it.value }.key
     }
 }
 //todo
